@@ -31,11 +31,11 @@
 					<tr>
 						<th width="200">취     미</th>
 						<td width="300">
-							<input type="checkbox" id="hobby" name="hobby" value="등산">등산
-							<input type="checkbox" id="hobby" name="hobby" value="낚시">낚시
-							<input type="checkbox" id="hobby" name="hobby" value="축구">축구
-							<input type="checkbox" id="hobby" name="hobby" value="농구">농구
-							<input type="checkbox" id="hobby" name="hobby" value="여행">여행
+							<label><input type="checkbox" id="hobby" name="hobby" value="등산">등산</label>
+							<label><input type="checkbox" id="hobby" name="hobby" value="낚시">낚시</label>
+							<label><input type="checkbox" id="hobby" name="hobby" value="축구">축구</label>
+							<label><input type="checkbox" id="hobby" name="hobby" value="농구">농구</label>
+							<label><input type="checkbox" id="hobby" name="hobby" value="여행">여행</label>
 						</td>
 					</tr>
 				</table>

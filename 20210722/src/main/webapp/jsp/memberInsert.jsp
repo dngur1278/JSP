@@ -18,11 +18,13 @@
 	<div align="center">
 		<div><h1>회원가입내역</h1></div>
 		<div>
-			<h3>아이디 : <%= id %></h3>
+			<h3>아이디 : <%= id %> ${param.id }</h3>
 			<h3>비밀번호 : <%= password %></h3>
 			<h3>이름 : <%= name %></h3>
 			<h3>나이 : <%= age %></h3>
-			<h3>취미 : <%= hobbys[0] %></h3>
+			<h3>취미 : <% for (String hobby : hobbys) {
+							out.print(hobby+" "); } %></h3>
+			<h3>EL 표현식 : ${paramValues.hobby[0]} </h3>
 		</div>
 	</div>
 </body>
