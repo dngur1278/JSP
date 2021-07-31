@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Form</title>
-<link rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/loginview.css">
+<link rel="stylesheet" type="text/css" href="css/loginview.css">
 </head>
-<body width="100%" height="100%">
 <jsp:include page="../home/header.jsp" />
+<body width="100%" height="100%">
 	<form id="frm" action="login.do" method="post" class="loginForm">
 		<h2>Login</h2>
 		

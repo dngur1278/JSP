@@ -5,11 +5,10 @@
   padding: 0px;
   text-decoration: none;
   font-family:sans-serif;
-
 }
 
 body {
-  background-image: #34495e;
+  background-color: #34495e;
 }
 
 .loginForm {
