@@ -1,13 +1,12 @@
 package co.prj.sports.member.vo;
 
-import java.sql.Date;
 
 public class MemberVO {
 	private String id;
 	private String password;
 	private String name;
-	private Date birth;
 	private String gender;
+	private int age;
 	private String author;
 	private char state;
 	
@@ -37,20 +36,20 @@ public class MemberVO {
 		this.name = name;
 	}
 
-	public Date getBirth() {
-		return birth;
-	}
-
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-
 	public String getGender() {
 		return gender;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public String getAuthor() {
@@ -68,6 +67,6 @@ public class MemberVO {
 	public void setState(char state) {
 		this.state = state;
 	}
-	
+
 	
 }

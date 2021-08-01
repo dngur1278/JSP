@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 				vo.setId(rs.getString("id"));
 				vo.setPassword(rs.getString("password"));
 				vo.setName(rs.getString("name"));
-				vo.setBirth(rs.getDate("Birth"));
+				vo.setAge(rs.getInt("age"));
 				vo.setGender(rs.getString("gender"));
 				vo.setAuthor(rs.getString("author"));
 				
@@ -47,29 +47,146 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return list;
 	}
+	
+	@Override
+	public MemberVO memberLogin(MemberVO vo) {
+		// TODO 로그인 구현
+		String sql = "select name, author from member where id=? and password=? and state = 'Y'";
+		
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPassword());
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				vo.setName(rs.getString("name"));
+				vo.setAuthor(rs.getString("author"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo;
+	}
 
 	@Override
-	public MemberVO memberSelectOne() {
+	public MemberVO memberSelectOne(MemberVO vo) {
 		// TODO 회원 1명 조회
-		return null;
+		String sql = "select * from member where id = ?";
+		
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				vo.setId(rs.getString("id"));
+				vo.setPassword(rs.getString("password"));
+				vo.setName(rs.getString("name"));
+				vo.setGender(rs.getString("gender"));
+				vo.setAge(rs.getInt("age"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo;
 	}
 
 	@Override
 	public int memberInsert(MemberVO vo) {
 		// TODO 회원 가입
-		return 0;
+		String sql = "insert into member(id, password, name,"+
+				"gender, age, author, state) values (?,?,?,?,?,'USER','Y')";
+		int n = 0;
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPassword());
+			psmt.setString(3, vo.getName());
+			psmt.setString(4, vo.getGender());
+			psmt.setInt(5, vo.getAge());
+			n = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return n;
 	}
 
 	@Override
 	public int memberUpdate(MemberVO vo) {
 		// TODO 회원 정보 수정
-		return 0;
+		String sql = "update member set password=?, name=? where id = ?";
+		int result = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getPassword());
+			psmt.setString(2, vo.getName());
+			psmt.setString(3, vo.getId());
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
 	}
 
 	@Override
 	public int memberDelete(MemberVO vo) {
 		// TODO 회원 탈퇴
-		return 0;
+		String sql = "delete from member where id=? and password=?";
+		int result = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPassword());
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+	
+	//아이디 중복체크
+	@Override
+	public int checkId(String id) {
+		String sql = "select count(id) as cnt from member where id=?";
+		int cnt = 0;
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;	
 	}
 	
 	private void close() {
@@ -81,6 +198,5 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 	}
-
 
 }
