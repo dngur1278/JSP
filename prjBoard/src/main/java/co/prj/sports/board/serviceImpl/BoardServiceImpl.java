@@ -98,7 +98,7 @@ public class BoardServiceImpl implements BoardService {
 			n=psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		}finally { 
 			close();
 		}
 		return n;
@@ -107,7 +107,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int boardInsert(BoardVO vo) {
 		String sql="INSERT INTO board(bid, btitle, bcontent,"
-		+"bwriter, bdate, bhit) VALUES(b_SEQ.NEXTVAL,?,?,?,sysdate,0)";
+		+"bwriter, bdate) VALUES(b_SEQ.NEXTVAL,?,?,?,sysdate)";
 		int n=0;
 		try {
 			conn=datasource.getConnection();
