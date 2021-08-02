@@ -21,7 +21,7 @@
 				</table>
 			</div>
 			<div>
-				<button type="submit">수정</button>
+				<button type="submit" class="btn btn-secondary">수정</button>
 			</div>
 		</div>
 	</form>

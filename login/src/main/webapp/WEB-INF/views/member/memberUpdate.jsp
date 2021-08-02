@@ -44,7 +44,7 @@
 					</table>
 				</div><br/>
 				<div>
-					<button type="submit">수정완료</button>
+					<button type="submit" class="btn btn-secondary">수정완료</button>
 				</div>
 			</form>
 		</div>
